@@ -1,0 +1,9 @@
+[submodule "react-ssr"]
+	path = react-ssr
+	url = git@github.com:3Alan/simple-ssr.git
+[submodule "react"]
+	path = react
+	url = git@github.com:3Alan/simple-react.git
+[submodule "react-form"]
+	path = react-form
+	url = git@github.com:3Alan/react-form-demo.git
