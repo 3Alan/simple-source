@@ -1,5 +1,5 @@
-export default function mitt(all) {
-  const all = all || new Map();
+module.exports = function mitt(allProps) {
+  const all = allProps || new Map();
 
   const on = (type, handler) => {
     const handlers = all.get(type);
