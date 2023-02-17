@@ -23,6 +23,7 @@ export default class Axios {
       responseInterceptorChain.push(fulfilled, rejected);
     });
 
+    // chain为成对出现的fulfilled, rejected
     const chain = [
       ...requestInterceptorChain,
       dispatchRequest,
@@ -32,8 +33,8 @@ export default class Axios {
 
     let len = chain.length;
 
-    // 将config转化成promise对象
-    promise = Promise.resolve({...this.defaultConfig, ...config});
+    // 将config转化成promise对象以方便后面组成 Promise 链
+    promise = Promise.resolve({ ...this.defaultConfig, ...config });
 
     while (i < len) {
       promise = promise.then(chain[i++], chain[i++]);
