@@ -1,16 +1,19 @@
-export default async function xhr(config) {
-  if (config.timeout) {
-    const controller = new AbortController();
-    const abortId = setTimeout(() => {
-      controller.abort();
-    }, config.timeout);
+const isXHRAdapterSupported = typeof fetch !== 'undefined';
 
-    const res = await fetch(config.url, { ...config, signal: controller.signal });
+export default isXHRAdapterSupported &&
+  async function xhrAdapter(config) {
+    if (config.timeout) {
+      const controller = new AbortController();
+      const abortId = setTimeout(() => {
+        controller.abort();
+      }, config.timeout);
 
-    clearTimeout(abortId);
+      const res = await fetch(config.url, { ...config, signal: controller.signal });
 
-    return res;
-  }
+      clearTimeout(abortId);
 
-  return fetch(config.url, config);
-}
+      return res;
+    }
+
+    return fetch(config.url, config);
+  };

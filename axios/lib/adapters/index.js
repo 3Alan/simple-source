@@ -1,17 +1,18 @@
 import xhr from './xhr';
+import http from './http';
 
 const knownAdapters = {
-  // TODO: 
-  http: undefined,
-  xhr: xhr
+  http,
+  xhr
 };
 
-const currentAdapter = 'xhr';
-
 export default async function adapters(config) {
-  const adapter = knownAdapters['xhr'];
-
-  if (currentAdapter === 'xhr') {
-    return adapter(config);
+  let adapter;
+  for (const key in knownAdapters) {
+    if (knownAdapters[key]) {
+      adapter = knownAdapters[key];
+    }
   }
+
+  return adapter(config);
 }
