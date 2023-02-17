@@ -1,0 +1,23 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.demo-wrap {
+  display: flex;
+}
+
+.card {
+  padding: 2em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 0 20px 20px 0;
+  width: 260px;
+  word-wrap: break-word;
+}
+
+.read-the-docs {
+  color: #888;
+}
